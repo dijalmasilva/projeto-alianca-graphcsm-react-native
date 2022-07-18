@@ -1,6 +1,11 @@
-import {Image, Pressable, StyleSheet, Text, View} from "react-native";
+import {Dimensions, Image, StyleSheet, View} from "react-native";
+import MainLayout from "../../layouts/MainLayout";
+import {getValueOfPercentFromValue} from "../../utils/main-helpers";
+import {BorderButton, PrimaryButton} from "../../components/button/button";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({navigation}) => {
+
+    const dimension = Dimensions.get("screen")
 
     const goToSignIn = () => (
         navigation.navigate('signIn')
@@ -11,59 +16,47 @@ const HomeScreen = ({ navigation }) => {
     )
 
     return (
-        <View style={styles.container}>
-            <View style={styles.mainView}>
-                <View style={{ flex: 20, alignItems: "center" }}>
-                    <Image source={{uri: "https://media.graphassets.com/Wt0h3SzJRNHACD8eMXRg"}}
-                           style={styles.image}/>
-                </View>
-                <View style={styles.actions}>
-                    <Pressable style={[styles.button, styles.btRed]} onPress={goToSignIn}>
-                        <Text style={styles.btText}>Entrar</Text>
-                    </Pressable>
-                    <Pressable style={[styles.button, styles.btBlue]} onPress={goToSignUp}>
-                        <Text style={styles.btText}>Cadastrar</Text>
-                    </Pressable>
-                </View>
+        <MainLayout>
+            <View style={styles.container}>
+                <Image source={{uri: "https://media.graphassets.com/Wt0h3SzJRNHACD8eMXRg"}}
+                       style={StyleSheet.flatten([{width: getValueOfPercentFromValue(dimension.width, 100)}, styles.imageLogo])}/>
             </View>
-        </View>
+            <View style={[styles.container, styles.containerButtons]}>
+                <PrimaryButton onPress={goToSignIn}>Entrar</PrimaryButton>
+                <BorderButton onPress={goToSignUp}>Cadastrar</BorderButton>
+            </View>
+        </MainLayout>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: "center",
+        flex: 2,
         justifyContent: "center",
-        paddingHorizontal: 16
+        alignItems: "center",
     },
-    mainView: {
-        flex: 24,
-    },
-    image: {
+    containerButtons: {
         flex: 1,
-        resizeMode: "center",
-        aspectRatio: 1
     },
-    actions: {
-        flex: 4,
-        alignItems: "center"
+    imageLogo: {
+        height: '100%',
+        resizeMode: "contain",
     },
     button: {
-        width: 300,
-        alignItems: "center",
         padding: 16,
+        width: "100%",
         marginVertical: 4,
-        borderRadius: 8
     },
     btRed: {
-        backgroundColor: "#762222"
+        backgroundColor: "#000000"
     },
     btBlue: {
-        backgroundColor: "#24428d"
+        backgroundColor: "#000000"
     },
     btText: {
-        color: "#FFFFFF"
+        fontWeight: "bold",
+        color: '#FFFFFF',
+        textAlign: "center"
     }
 })
 
