@@ -1,17 +1,33 @@
-import {Text, View, Image, TextInput} from "react-native";
+import {ScrollView, StyleSheet} from "react-native";
 import {useState} from "react";
+import {PrimaryButton} from "../../components/button/button";
+import Input from "../../components/input/input";
+import MainLayout from "../../layouts/MainLayout";
 
 const SignIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    return (
-        <View style={{ flex: 1 }}>
-           <TextInput onChangeText={setUsername} placeholder="Nome de usuário" />
-           <TextInput onChangeText={setPassword} placeholder="Senha" textContentType="password" />
+    const signIn = () => {
+        console.log('asasd')
+    }
 
-        </View>
+    return (
+        <MainLayout>
+            <ScrollView style={styles.container}>
+                <Input autoFocus label="Nome de usuário" placeholder="pedro1" textContentType="nickname"/>
+                <Input label="Senha" placeholder="min 8" textContentType="password" secureTextEntry/>
+                <PrimaryButton onPress={signIn}>Entrar</PrimaryButton>
+            </ScrollView>
+        </MainLayout>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: "column",
+    }
+})
 
 export default SignIn

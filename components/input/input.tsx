@@ -4,18 +4,19 @@ import {useTheme} from "@react-navigation/native";
 type Props = TextInputProps;
 
 const Input = ({
-   style,
-   defaultValue,
-   value,
-   onFocus,
-   label,
-   placeholder,
-   secureTextEntry,
-   textContentType,
-   onChangeText,
-   children,
-   ...props
-}: Props) => {
+                   style,
+                   defaultValue,
+                   value,
+                   onFocus,
+                   label,
+                   placeholder,
+                   secureTextEntry,
+                   textContentType,
+                   onChangeText,
+                   children,
+                   autoFocus,
+                   ...props
+               }: Props) => {
     const theme = useTheme();
 
     const combineStyle = StyleSheet.flatten([
@@ -32,7 +33,8 @@ const Input = ({
     return (
         <View>
             <Text style={combineStyleText}>{label}:</Text>
-            <TextInput onFocus={onFocus} defaultValue={defaultValue} value={value} placeholder={placeholder}
+            <TextInput autoFocus={autoFocus} onFocus={onFocus} defaultValue={defaultValue} value={value}
+                       placeholder={placeholder}
                        secureTextEntry={secureTextEntry} textContentType={textContentType} onChangeText={onChangeText}
                        style={combineStyle} {...props}>{children}</TextInput>
         </View>
