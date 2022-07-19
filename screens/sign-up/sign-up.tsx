@@ -26,7 +26,7 @@ const SignUp = () => {
         <MainLayout>
             <ScrollView>
                 <AvatarInput/>
-                <Input label="Nome de usuário" placeholder="pedro1" textContentType="nickname"/>
+                <Input autoFocus label="Nome de usuário" placeholder="pedro1" textContentType="nickname"/>
                 <Input label="Senha" placeholder="min 8" textContentType="password" secureTextEntry/>
                 <Input label="Nome" textContentType="name" placeholder="Simão Pedro"/>
                 <Input defaultValue={birthday} onFocus={openDatePicker} label="Data de nascimento" placeholder="dd/mm/yyyy"/>

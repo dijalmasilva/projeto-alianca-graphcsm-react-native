@@ -12,12 +12,11 @@ const AvatarInput = () => {
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
-            aspect: [4, 5],
+            aspect: [4, 4],
             quality: 1,
         })
 
         if (!result.cancelled) {
-            console.log(result)
             setImage(result.uri)
         }
     }
@@ -30,7 +29,7 @@ const AvatarInput = () => {
     return (
         <View style={styles.container}>
             <View style={combineStyleImageContainer}>
-                <Image source={{uri: imgUri}} style={styles.image}/>
+                { imgUri ? <Image source={{uri: imgUri}} style={styles.image}/> : null}
             </View>
             <View style={styles.buttonContainer}>
                 <PrimaryButton onPress={getPickImage}>
