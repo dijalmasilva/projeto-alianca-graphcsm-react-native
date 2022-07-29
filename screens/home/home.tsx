@@ -1,7 +1,7 @@
 import {Dimensions, Image, StyleSheet, View} from "react-native";
-import MainLayout from "../../layouts/MainLayout";
-import {getValueOfPercentFromValue} from "../../utils/main-helpers";
-import {BorderButton, PrimaryButton} from "../../components/button/button";
+import MainLayout from "layouts/MainLayout";
+import {BorderButton, PrimaryButton} from "components/button/button";
+import {getValueOfPercentFromValue} from "utils/main-helpers";
 
 const HomeScreen = ({navigation}) => {
 

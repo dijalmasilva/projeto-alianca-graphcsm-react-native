@@ -1,12 +1,12 @@
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-
-import HomeScreen from "./screens/home/home";
-import SignIn from "./screens/sign-in/sign-in";
-import SignUp from "./screens/sign-up/sign-up";
 import {useColorScheme} from "react-native";
-import darkTheme from "./themes/dark-theme";
-import defaultTheme from "./themes/default-theme";
+
+import darkTheme from "themes/dark-theme";
+import defaultTheme from "themes/default-theme";
+import HomeScreen from "screens/home/home";
+import SignIn from "screens/sign-in/sign-in";
+import SignUp from "screens/sign-up/sign-up";
 
 const Stack = createNativeStackNavigator();
 

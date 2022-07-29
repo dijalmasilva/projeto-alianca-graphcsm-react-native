@@ -1,8 +1,8 @@
 import {ScrollView, StyleSheet} from "react-native";
 import {useState} from "react";
-import {PrimaryButton} from "../../components/button/button";
-import Input from "../../components/input/input";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "layouts/MainLayout";
+import Input from "components/input/input";
+import {PrimaryButton} from "components/button/button";
 
 const SignIn = () => {
     const [username, setUsername] = useState('')

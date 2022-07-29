@@ -1,13 +1,18 @@
 import {ScrollView, StyleSheet, View} from "react-native";
-import MainLayout from "../../layouts/MainLayout";
-import Input from "../../components/input/input";
-import AvatarInput from "../../components/input/avatar-input";
-import {BorderButton} from "../../components/button/button";
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import {useState} from "react";
+import ImagePickerType from "models/ImagePickerType";
+import MainLayout from "layouts/MainLayout";
+import AvatarInput from "components/input/avatar-input";
+import Input from "components/input/input";
+import {BorderButton} from "components/button/button";
 
 const SignUp = () => {
-    const [birthday, setBirthday] = useState('')
+    const [birthday, setBirthday] = useState<string>('')
+    const [image, setImage] = useState<ImagePickerType | null>(null)
+    const [name, setName] = useState<string>("")
+    const [username, setUsername] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
     const updateBirthday = (event, selectedDate) => {
         event.preventDefault();
@@ -25,7 +30,7 @@ const SignUp = () => {
     return (
         <MainLayout>
             <ScrollView>
-                <AvatarInput/>
+                <AvatarInput onChange={setImage}/>
                 <Input autoFocus label="Nome de usuário" placeholder="pedro1" textContentType="nickname"/>
                 <Input label="Senha" placeholder="min 8" textContentType="password" secureTextEntry/>
                 <Input label="Nome" textContentType="name" placeholder="Simão Pedro"/>
