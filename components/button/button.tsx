@@ -13,30 +13,30 @@ const Button = ({children, ...props}: Props) => {
     const combineStyleText = StyleSheet.flatten([props.btText, styles.btText])
 
     return (
-        <Pressable style={combineStyleButton} onPress={props.onPress}>
+        <Pressable style={combineStyleButton} onPress={props.onPress} {...props}>
             <Text style={combineStyleText}>{children}</Text>
         </Pressable>
     )
 }
 
-export const PrimaryButton = ({children, onPress}) => {
+export const PrimaryButton = ({children, onPress, ...props}) => {
     const theme = useTheme();
 
     return (
         <Button onPress={onPress} btStyle={{backgroundColor: theme.colors.primary}}
-                btText={{color: theme.colors.card}}>
+                btText={{color: theme.colors.card}} {...props}>
             {children}
         </Button>
     )
 }
 
-export const BorderButton = ({children, onPress}) => {
+export const BorderButton = ({children, onPress, ...props}) => {
     const theme = useTheme();
 
     return (
         <Button onPress={onPress}
                 btStyle={{backgroundColor: 'transparent', borderColor: theme.colors.primary, borderStyle: "solid", borderWidth: 1}}
-                btText={{color: theme.colors.primary}}>
+                btText={{color: theme.colors.primary}} {...props}>
             {children}
         </Button>
     )

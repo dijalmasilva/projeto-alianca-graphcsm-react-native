@@ -1,11 +1,12 @@
 import {ScrollView, StyleSheet, View} from "react-native";
-import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import {DateTimePickerAndroid} from '@react-native-community/datetimepicker';
 import {useState} from "react";
 import ImagePickerType from "models/ImagePickerType";
 import MainLayout from "layouts/MainLayout";
 import AvatarInput from "components/input/avatar-input";
 import Input from "components/input/input";
 import {BorderButton} from "components/button/button";
+import {printConsole} from "utils/debugger";
 
 const SignUp = () => {
     const [birthday, setBirthday] = useState<string>('')
@@ -15,7 +16,7 @@ const SignUp = () => {
     const [password, setPassword] = useState<string>("")
 
     const updateBirthday = (event, selectedDate) => {
-        event.preventDefault();
+        printConsole(selectedDate.toString())
         setBirthday(selectedDate.toString())
     }
 
@@ -27,19 +28,46 @@ const SignUp = () => {
         })
     }
 
+    const validateFields = () => {
+        if (!username) {
+            return 'Voce precisa inserir o nome de usuario.'
+        }
+
+        if (!password) {
+            return 'Voce precisa criar uma senha.'
+        }
+
+        if (!name) {
+            return 'Voce precisa inserir o seu nome.'
+        }
+
+        return undefined;
+    }
+
+    const onSubmit = () => {
+        const notValid = validateFields()
+
+        if (!notValid) {
+            printConsole({ name, birthday, username, password, image })
+        }
+    }
+
     return (
-        <MainLayout>
-            <ScrollView>
+        <ScrollView>
+            <MainLayout>
                 <AvatarInput onChange={setImage}/>
-                <Input autoFocus label="Nome de usuário" placeholder="pedro1" textContentType="nickname"/>
-                <Input label="Senha" placeholder="min 8" textContentType="password" secureTextEntry/>
-                <Input label="Nome" textContentType="name" placeholder="Simão Pedro"/>
-                <Input defaultValue={birthday} onFocus={openDatePicker} label="Data de nascimento" placeholder="dd/mm/yyyy"/>
-                <View style={styles.buttonSubmit}>
-                    <BorderButton> Cadastrar </BorderButton>
+                <View>
+                    <Input autoFocus label="Nome de usuário" placeholder="pedro1" textContentType="nickname" onChangeText={setUsername}/>
+                    <Input label="Senha" placeholder="min 8" textContentType="password" secureTextEntry onChangeText={setPassword}/>
+                    <Input label="Nome" textContentType="name" placeholder="Simão Pedro" onChangeText={setName}/>
+                    <Input value={birthday} onFocus={openDatePicker} label="Data de nascimento" placeholder="dd/mm/yyyy"/>
+                    <View style={styles.buttonSubmit}>
+                        <BorderButton onPress={onSubmit}> Cadastrar </BorderButton>
+                    </View>
                 </View>
-            </ScrollView>
-        </MainLayout>
+            </MainLayout>
+        </ScrollView>
+
     )
 }
 
